@@ -1,3 +1,8 @@
+app.use(express.static("../frontend"));
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/../frontend/index.html");
+});
 app.get("/", (req, res) => {
   res.send("BookMyCampus API is running");
 });
