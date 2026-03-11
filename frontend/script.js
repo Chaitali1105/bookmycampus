@@ -1,6 +1,5 @@
 // API Base URL
-const API_URL = 'http://localhost:5000';
-
+const API_URL = "https://bookmycampus-3.onrender.com";
 // Utility function to display messages
 function showMessage(message, type = 'success') {
     // Remove any existing messages
