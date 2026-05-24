@@ -16,14 +16,14 @@ Before you begin, ensure you have installed:
 ## Step 1: Database Setup
 
 1. Open your MySQL command line or a GUI tool like MySQL Workbench.
-2. Run the SQL schema files located in the `database` folder to create the tables and seed sample data:
+2. Run the unified SQL schema file located in the `database` folder to create all tables and seed sample data:
 
 ```sql
-source d:\CampusResourceAllocationAndManagementSystem-main (2)\database\schema.sql
-source d:\CampusResourceAllocationAndManagementSystem-main (2)\database\bookings_schema.sql
+-- Navigate to the project root first, then run:
+SOURCE database/schema.sql;
 ```
 
-*(This creates the `users`, `resources`, `bookings`, and `notifications` tables).*
+*(This creates the `users`, `resources`, `bookings`, `notifications`, and `timetable` tables with all seed data).*
 
 ---
 
@@ -38,11 +38,6 @@ npm install
 ```
 
 3. Configure your database credentials. Open `backend/db.js` and ensure the `user`, `password`, and `port` match your local MySQL configuration.
-4. **Run Database Migrations:** Run the migration script to ensure your database has the latest column updates (like `target_role` for notifications).
-
-```bash
-node migrate.js
-```
 
 5. **Start the backend server:**
 
@@ -121,7 +116,7 @@ npm run dev
 - You already have a Node server running in the background. Kill the existing terminal process or restart your computer, then try starting the backend again.
 
 **"Failed to load notifications" error?**
-- Make sure you ran `node migrate.js` inside the backend folder to apply database updates.
+- Make sure you ran the unified `database/schema.sql` file in MySQL, which includes the `target_role` column on the notifications table.
 
 **"Error 401: invalid_client" or "redirect_uri_mismatch" during Google Login?**
 - Double-check your Google Cloud Console configuration. Ensure `http://localhost:5173` is explicitly saved in your Authorized Origins and Redirect URIs.

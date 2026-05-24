@@ -260,17 +260,17 @@ class GeminiAssistant {
         // Fetch real-time data from dashboard context if available
         const resources = window.allResources || [];
         const timetable = window.allTimetableData || [];
-        
+
         setTimeout(() => {
             typingDiv.remove();
             let response = "";
             const lowerText = userText.toLowerCase();
-            
+
             // 1. Check for Room/Class Location (Timetable)
             if (lowerText.includes('class') || lowerText.includes('lecture') || lowerText.includes('sem')) {
                 const semMatch = lowerText.match(/sem\s*(\d)/);
                 const semester = semMatch ? semMatch[1] : null;
-                
+
                 let foundClasses = [];
                 if (semester) {
                     foundClasses = timetable.filter(t => t.semester == semester);
@@ -287,12 +287,12 @@ class GeminiAssistant {
                 } else {
                     response = "I couldn't find a specific schedule for that semester right now. Please check the 'Class Timetable' section for full details.";
                 }
-            } 
+            }
             // 2. Check for Resource Availability
             else if (lowerText.includes('available') || lowerText.includes('status') || lowerText.includes('free')) {
                 const resourceName = lowerText.replace('available', '').replace('is', '').replace('or not', '').replace('?', '').trim();
                 const matchedResource = resources.find(r => r.name.toLowerCase().includes(resourceName) || resourceName.includes(r.name.toLowerCase()));
-                
+
                 if (matchedResource) {
                     response = `The ${matchedResource.name} is currently **${matchedResource.status.toUpperCase()}**. It is located in ${matchedResource.building}, Floor ${matchedResource.floor_no}.`;
                 } else {
@@ -319,7 +319,7 @@ class GeminiAssistant {
             } else {
                 response = "I'm Gemini, your intelligent campus assistant. I have access to real-time resource availability and class schedules. Ask me where a class is or if a facility is free!";
             }
-            
+
             this.addMessage(response, 'assistant');
         }, 1200);
     }
