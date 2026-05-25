@@ -460,12 +460,6 @@ Contributions are welcome! Here's how:
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License** — free to use for hackathons, learning, and academic purposes.
-
----
-
 <div align="center">
 
 **Built with ❤️ for Campus Communities**
